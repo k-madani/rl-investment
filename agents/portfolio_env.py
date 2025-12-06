@@ -29,8 +29,8 @@ class PortfolioEnv(gym.Env):
             low=0, high=1, shape=(self.n_stocks,), dtype=np.float32
         )
         
-        # State space: price history + current allocation + portfolio value
-        state_size = (window_size * self.n_stocks) + self.n_stocks + 1
+        # State space: price history + current allocation + portfolio value 
+        state_size = ((window_size - 1) * self.n_stocks) + self.n_stocks + 1
         self.observation_space = spaces.Box(
             low=-np.inf, high=np.inf, shape=(state_size,), dtype=np.float32
         )
