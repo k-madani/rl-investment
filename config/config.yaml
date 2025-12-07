@@ -1,0 +1,58 @@
+# RL Investment System Configuration
+
+# Environment Settings
+environment:
+  initial_balance: 100000
+  window_size: 10
+  transaction_cost: 0.001
+  max_steps: null  # null = use all available data
+
+# DQN Agent Settings
+dqn:
+  learning_rate: 0.001
+  gamma: 0.95
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.995
+  batch_size: 64
+  replay_buffer_size: 10000
+  hidden_size: 128
+  target_update_freq: 10
+
+# Contextual Bandit Settings
+bandit:
+  n_features: 5
+  learning_rate: 0.1
+  window_size: 5
+  n_select: 3
+  epsilon_exploration: 0.3
+
+# Training Settings
+training:
+  n_episodes: 100
+  early_stopping_patience: 20
+  save_freq: 10
+  log_freq: 10
+  use_fallback: true
+  fallback_threshold: 5
+
+# Data Settings
+data:
+  tickers: ['AMD', 'GOOGL', 'META', 'MSFT', 'NVDA']
+  start_date: '2023-01-01'
+  end_date: null  # null = today
+  validation_split: 0.2
+
+# Paths
+paths:
+  data_dir: 'data'
+  results_dir: 'results'
+  models_dir: 'results/models'
+  figures_dir: 'results/figures'
+  logs_dir: 'logs'
+
+# Evaluation Settings
+evaluation:
+  n_runs: 10  # For random/untrained baselines
+  confidence_level: 0.95
+  risk_free_rate: 0.0
