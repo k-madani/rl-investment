@@ -5,6 +5,7 @@ from agents.portfolio_env import PortfolioEnv
 from agents.dqn_agent import DQNAgent
 import torch
 import os
+from utils.paths import get_figure_path, get_model_path
 
 class ContextualBandit:
     """
@@ -190,7 +191,7 @@ def plot_results(episode_rewards, portfolio_values, losses):
         axes[1, 1].grid(True)
     
     plt.tight_layout()
-    plt.savefig('training_results.png', dpi=300, bbox_inches='tight')
+    plt.savefig(get_figure_path('training_results.png'), dpi=300, bbox_inches='tight')
     print("✓ Results saved to training_results.png")
     plt.close()
 
@@ -222,7 +223,7 @@ if __name__ == "__main__":
     
     # Save model
     os.makedirs('models', exist_ok=True)
-    dqn_agent.save('models/dqn_portfolio.pth')
+    dqn_agent.save(get_model_path('dqn_portfolio.pth'))
     print("✓ Model saved to models/dqn_portfolio.pth")
     
     # Plot results

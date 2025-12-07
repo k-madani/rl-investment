@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from agents.portfolio_env import PortfolioEnv
 from agents.dqn_agent import DQNAgent
 import torch
+from utils.paths import get_figure_path, get_model_path
 
 def baseline_equal_weight(env):
     """Baseline: Equal weight portfolio (20% each stock)"""
@@ -66,7 +67,7 @@ def plot_comparison(dqn_history, equal_history, buyhold_history, tickers):
              bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
     
     plt.tight_layout()
-    plt.savefig('strategy_comparison.png', dpi=300)
+    plt.savefig(get_figure_path('strategy_comparison.png'), dpi=300)
     print("✓ Comparison saved to strategy_comparison.png")
     plt.close()
 
@@ -106,7 +107,7 @@ if __name__ == "__main__":
     state_size = env.observation_space.shape[0]
     action_size = env.n_stocks
     dqn_agent = DQNAgent(state_size, action_size)
-    dqn_agent.load('models/dqn_portfolio.pth')
+    dqn_agent.load(get_model_path('dqn_portfolio.pth'))
     
     print("\nEvaluating strategies...")
     
