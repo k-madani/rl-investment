@@ -1,0 +1,9 @@
+experiment_name: "small_investor_10k"
+description: "Small investor with $10,000 capital"
+initial_balance: 10000
+tickers: ['NVDA', 'GOOGL', 'META', 'MSFT', 'AMD']
+n_episodes: 100
+learning_rate: 0.001
+gamma: 0.95
+transaction_cost: 0.001
+window_size: 10

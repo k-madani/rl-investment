@@ -1,0 +1,58 @@
+config:
+  description: ''
+  end_date: '2025-12-07 14:26:24.428919'
+  epsilon_decay: 0.995
+  epsilon_end: 0.01
+  epsilon_start: 1.0
+  experiment_name: Random
+  gamma: 0.95
+  initial_balance: 25700
+  learning_rate: 0.001
+  n_episodes: 100
+  start_date: '2024-12-07 14:26:24.428919'
+  tickers:
+  - NVDA
+  - AMD
+  - INTC
+  - QCOM
+  - TSM
+  transaction_cost: 0.001
+  window_size: 10
+final_portfolio_value: !!python/object/apply:numpy._core.multiarray.scalar
+- &id001 !!python/object/apply:numpy.dtype
+  args:
+  - f8
+  - false
+  - true
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  zIqlAQSr60A=
+metrics:
+  final_value: !!python/object/apply:numpy._core.multiarray.scalar
+  - *id001
+  - !!binary |
+    zIqlAQSr60A=
+  max_drawdown: !!python/object/apply:numpy._core.multiarray.scalar
+  - *id001
+  - !!binary |
+    LvylT/3rPcA=
+  sharpe_ratio: !!python/object/apply:numpy._core.multiarray.scalar
+  - *id001
+  - !!binary |
+    42mgc/tDAUA=
+  total_return: !!python/object/apply:numpy._core.multiarray.scalar
+  - *id001
+  - !!binary |
+    s+QwGukeXkA=
+total_return_pct: !!python/object/apply:numpy._core.multiarray.scalar
+- *id001
+- !!binary |
+  s+QwGukeXkA=

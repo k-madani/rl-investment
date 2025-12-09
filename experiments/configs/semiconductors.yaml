@@ -1,0 +1,9 @@
+experiment_name: "semiconductor_focus"
+description: "Semiconductor companies portfolio"
+initial_balance: 100000
+tickers: ['NVDA', 'AMD', 'INTC', 'QCOM', 'TSM']
+n_episodes: 100
+learning_rate: 0.001
+gamma: 0.95
+transaction_cost: 0.001
+window_size: 10

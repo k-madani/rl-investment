@@ -1,0 +1,9 @@
+experiment_name: "medium_investor_50k"
+description: "Medium investor with $50,000 capital"
+initial_balance: 50000
+tickers: ['NVDA', 'GOOGL', 'META', 'MSFT', 'AMD']
+n_episodes: 100
+learning_rate: 0.001
+gamma: 0.95
+transaction_cost: 0.001
+window_size: 10

@@ -1,0 +1,9 @@
+experiment_name: "tech_giants_portfolio"
+description: "Portfolio of major tech companies"
+initial_balance: 100000
+tickers: ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META']
+n_episodes: 100
+learning_rate: 0.001
+gamma: 0.95
+transaction_cost: 0.001
+window_size: 10
