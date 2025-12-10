@@ -87,21 +87,23 @@ python analyze_agent.py
 
 | Metric | RL System | Equal Weight | Buy & Hold NVDA |
 |--------|-----------|--------------|-----------------|
-| **Total Return** | **210.06%** | 116.30% | 276.14% |
-| **Sharpe Ratio** | **1.931** ⭐ | 1.464 | 1.586 |
-| **Max Drawdown** | **-26.10%** | -28.05% | -36.88% |
-| **Significance** | **Baseline** | p < 0.001 | p = 0.043 |
+| **Total Return** | 210.06% | 116.30% | 276.14% |
+| **Sharpe Ratio** | **1.931** | 1.464 | 1.586 |
+| **Max Drawdown** | -26.10% | -28.05% | -36.88% |
+| **Significance** | Baseline | p < 0.001 | p = 0.043 |
 
 ### Robustness Testing
 
 | Scenario | Return | Sharpe | Status |
 |----------|--------|--------|--------|
-| Baseline (2Y) | +210% | 1.931 | ✅ Passed |
-| COVID Crash | +12% | 0.730 | ✅ Passed |
-| Bull Market | +237% | 0.872 | ✅ Passed |
-| High Trans. Cost | +198% | 1.850 | ✅ Passed |
+| Baseline (2Y) | +210% | 1.931 | Passed |
+| COVID Crash | +12% | 0.730 | Passed |
+| Bull Market | +237% | 0.872 | Passed |
+| High Trans. Cost | +198% | 1.850 | Passed |
 
 ## System Architecture
+
+![System Architecture](docs/system.png)
 
 The system uses three coordinated components:
 
@@ -122,18 +124,3 @@ The system uses three coordinated components:
 - Training: 2-year historical data (NVDA, GOOGL, META, MSFT, AMD)
 - Testing: Separate 2-year holdout period
 - Validation: Statistical significance testing (p < 0.001)
-
-## Project Structure
-
-``
-rl-investment/
-├── agents/
-│   ├── dqn_agent.py
-│   ├── orchestrator.py
-│   └── tools/portfolio_tools.py
-├── environment/portfolio_env.py
-├── train.py
-├── evaluate.py
-├── experiment.py
-└── analyze_agent.py
-``
