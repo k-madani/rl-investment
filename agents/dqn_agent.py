@@ -6,7 +6,64 @@ from collections import deque
 import random
 
 class DQNNetwork(nn.Module):
-    """Deep Q-Network"""
+    """
+    Deep Q-Network Agent for Portfolio Management.
+    
+    Implements DQN algorithm with experience replay and target networks
+    for learning optimal portfolio allocation strategies.
+    
+    Mathematical Foundation:
+    ----------------------
+    Q-learning update:
+        Q(s,a) ← Q(s,a) + α[r + γ max_{a'} Q(s',a') - Q(s,a)]
+    
+    Loss function:
+        L(θ) = E[(r + γ max_{a'} Q(s',a';θ⁻) - Q(s,a;θ))²]
+    
+    Where:
+        - Q(s,a): Expected return for action a in state s
+        - α: Learning rate (default: 0.001)
+        - γ: Discount factor (default: 0.95)
+        - θ: Policy network parameters
+        - θ⁻: Target network parameters
+        - r: Immediate reward
+    
+    Architecture:
+    ------------
+    Input Layer:  51 dimensions (state)
+    Hidden Layer 1: 128 neurons (ReLU activation)
+    Hidden Layer 2: 128 neurons (ReLU activation)
+    Output Layer: 5 dimensions (softmax → portfolio weights)
+    
+    State Space (51 dims):
+        - 45 features: 9-day price returns × 5 stocks
+        - 5 features: Current portfolio allocation
+        - 1 feature: Normalized portfolio value
+    
+    Action Space (5 dims):
+        - Portfolio weights w ∈ [0,1]^5 where Σw_i = 1
+    
+    Key Features:
+    ------------
+    - Experience replay buffer (capacity: 10,000)
+    - Target network for stable learning
+    - Epsilon-greedy exploration (ε: 1.0 → 0.01)
+    - Gradient clipping for training stability
+    
+    Example Usage:
+    -------------
+    >>> agent = DQNAgent(state_size=51, action_size=5)
+    >>> action = agent.select_action(state, training=True)
+    >>> agent.memory.push(state, action, reward, next_state, done)
+    >>> loss = agent.train_step()
+    >>> if episode % 10 == 0:
+    ...     agent.update_target_network()
+    
+    References:
+    ----------
+    - Mnih et al. (2015): "Human-level control through deep RL"
+    - Jiang et al. (2017): "A Deep RL Framework for Portfolio Management"
+    """
     def __init__(self, state_size, action_size, hidden_size=128):
         super(DQNNetwork, self).__init__()
         

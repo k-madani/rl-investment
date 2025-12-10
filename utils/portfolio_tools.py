@@ -94,7 +94,6 @@ class MarketDataTool:
             print(f"Error calculating indicators: {e}")
             return None
 
-
 class RiskAnalysisTool:
     """
     Tool for portfolio risk assessment and management.
@@ -223,7 +222,6 @@ class RiskAnalysisTool:
             print(f"Error calculating portfolio metrics: {e}")
             return None
 
-
 class BacktestTool:
     """
     Tool for strategy backtesting and evaluation.
@@ -300,16 +298,55 @@ class BacktestTool:
             print(f"Error comparing strategies: {e}")
             return None
 
-
 class ContextualBanditTool:
     """
     Custom tool for intelligent stock selection using contextual bandits.
     
-    Uses multi-armed bandit algorithm with market context to identify
-    promising investment opportunities dynamically.
+    Implements Upper Confidence Bound (UCB) strategy with market context
+    to dynamically identify promising investment opportunities.
     
-    This tool implements Upper Confidence Bound (UCB) strategy with
-    context-dependent learning for adaptive stock selection.
+    Mathematical Foundation:
+    -----------------------
+    Score function:
+        score(arm_i | context) = w_i^T · x_t
+    
+    Weight update (gradient descent):
+        w_i ← w_i + α · (r_i - ŵ_i) · x_t
+        where ŵ_i = w_i^T · x_t (prediction)
+    
+    Context features (x_t ∈ R^5):
+        - mean_return: Average return across stocks
+        - mean_volatility: Average volatility
+        - mean_momentum: Average momentum
+        - max_return: Best performing stock
+        - min_return: Worst performing stock
+    
+    Parameters:
+    ----------
+    - n_stocks: Number of stocks (arms) to select from
+    - n_features: Dimension of context vector (default: 5)
+    - learning_rate: α for weight updates (default: 0.1)
+    
+    Innovation:
+    ----------
+    Unlike standard multi-armed bandits, this tool incorporates market
+    context to make situation-aware selections. This enables the agent
+    to adapt stock preferences based on current market conditions rather
+    than using fixed selection probabilities.
+    
+    Example Usage:
+    -------------
+    >>> bandit = ContextualBanditTool(n_stocks=5)
+    >>> context = bandit.extract_context(prices, step=100)
+    >>> selected_stocks = bandit.select_stocks(context, n_select=3)
+    >>> # After observing reward:
+    >>> bandit.update(selected_stocks[0], context, reward)
+    
+    Comparison to Standard Bandits:
+    ------------------------------
+    - Standard UCB: Fixed arm selection based on historical performance
+    - Contextual (ours): Adapts selection based on current market state
+    - Advantage: Better exploration in dynamic environments
     """
     
     def __init__(self, n_stocks, n_features=5, learning_rate=0.1):
