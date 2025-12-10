@@ -1,0 +1,58 @@
+config:
+  description: ''
+  end_date: '2025-12-10 13:49:37.421353'
+  epsilon_decay: 0.995
+  epsilon_end: 0.01
+  epsilon_start: 1.0
+  experiment_name: Baseline
+  gamma: 0.95
+  initial_balance: 100000
+  learning_rate: 0.001
+  n_episodes: 50
+  start_date: '2024-12-10 13:49:37.421353'
+  tickers:
+  - NVDA
+  - GOOGL
+  - META
+  - MSFT
+  - AMD
+  transaction_cost: 0.001
+  window_size: 10
+final_portfolio_value: !!python/object/apply:numpy._core.multiarray.scalar
+- &id001 !!python/object/apply:numpy.dtype
+  args:
+  - f8
+  - false
+  - true
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  4v42ltNMAUE=
+metrics:
+  final_value: !!python/object/apply:numpy._core.multiarray.scalar
+  - *id001
+  - !!binary |
+    4v42ltNMAUE=
+  max_drawdown: !!python/object/apply:numpy._core.multiarray.scalar
+  - *id001
+  - !!binary |
+    +u31samZO8A=
+  sharpe_ratio: !!python/object/apply:numpy._core.multiarray.scalar
+  - *id001
+  - !!binary |
+    JU2SW4VY9D8=
+  total_return: !!python/object/apply:numpy._core.multiarray.scalar
+  - *id001
+  - !!binary |
+    2OL7L3ncREA=
+total_return_pct: !!python/object/apply:numpy._core.multiarray.scalar
+- *id001
+- !!binary |
+  2OL7L3ncREA=

@@ -367,7 +367,7 @@ class ContextualBanditTool:
         self.weights = np.random.randn(n_stocks, n_features) * 0.01
         self.counts = np.zeros(n_stocks)
     
-    def extract_context(self, prices, step, window=5):
+    def get_context(self, prices, step, window=5):
         """
         Extract market context features from price history.
         
@@ -548,7 +548,7 @@ if __name__ == "__main__":
     sample_prices = np.random.randn(100, 5).cumsum(axis=0) + 100
     
     # Extract context
-    context = bandit_tool.extract_context(sample_prices, step=50)
+    context = bandit_tool.get_context(sample_prices, step=50)
     print(f"   ✓ Extracted context: {context[:3]}... (shape: {context.shape})")
     
     # Select stocks

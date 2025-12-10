@@ -103,16 +103,17 @@ def train_dqn(env, agent, bandit, n_episodes=100, target_update_freq=10):
                     if circuit_breaker.should_use_fallback(step):
                         logger.warning(f"Using fallback policy at step {step}")
                         action = fallback_policy.get_action('equal_weight', state)
+                        favored_stocks = np.array([0, 1, 2])
                     else:
                         # Get context for bandit
-                        context = bandit.extract_context(env.prices, env.current_step)
+                        context = bandit.get_context(env.prices, env.current_step)
                         
                         # Bandit selects stocks
                         if episode < n_episodes * 0.3:
-                            favored_stocks = bandit.select_stocks(context, n_select=3, epsilon=0.3, explore=True)
+                            favored_stocks = bandit.select_stocks(context, epsilon=0.3, explore=True)
                         else:
-                            favored_stocks = bandit.select_stocks(context, n_select=3, explore=False)
-                        
+                            favored_stocks = bandit.select_stocks(context, explore=False)
+                                                
                         # DQN selects action
                         action = agent.select_action(state, training=True)
                         
